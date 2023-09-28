@@ -58,7 +58,7 @@ from soScope_model.inference import infer  # for enhanced profiles inference
 
 ### Train soScope on multimodal data
 
-soScope requires spatial profiles ($N\times G$),  spatial neighboring relations ($3\times \# edges$ , a sparse matrix in coordinate format) ,  image features ($NK\times 2048$), and image similarity matrix ($3\times \# edges$ , a sparse matrix in coordinate format) for model training. All of these data should be provided in  `data_dir`.
+soScope requires spatial profiles ($N\times G$),  spatial neighboring relations ($3\times number of edges$ , a sparse matrix in coordinate format) ,  image features ($NK\times 2048$), and image similarity matrix ($3\times number of edges$ , a sparse matrix in coordinate format) for model training. All of these data should be provided in  `data_dir`.
 
 ```python
 two_step_train(
