@@ -9,6 +9,7 @@ Tissues are constructed from cells with distinct molecular states and spatial or
  To address these challenges, we introduce spatial omics scope (soScope), a generative framework that enhances spatial resolution and data quality by modeling spot-level profiles from diverse spatial omics technologies. SoScope views each spot as an aggregation of "subspots" at an enhanced spatial resolution, integrating omics profiles, spatial relations, and high-resolution morphological images through a multimodal deep learning framework, enabling accurate modeling and reduction of variations in diverse spatial omics types.
 
 <img src="overview.png" alt="image-20230928102849342"  />
+
 **Fig. 1 | An overview of the study.**  (**a**) The soScope framework. soScope integrates molecular profiles ($X$), spatial neighboring relations ($A$), and morphological image features ($Y$) from the same tissue using a unified generative model to enhance spatial resolution and refine data quality for diverse spatial omics profiles. (**b**) The probabilistic graphical model representation of soScope. Each of the   spots in the spatial data is considered an aggregation of   subspots at a higher spatial resolution. The subspot omics profile (${\hat X}$) depends on both the latent states ($Z$) at the spot level and image features ($Y$) at the subspot level. The observed profile is obtained by summing profiles from its subspots.
 
 ![image-20230928103553984](model.png)
