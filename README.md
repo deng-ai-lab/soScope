@@ -9,13 +9,14 @@ Tissues are constructed from cells with distinct molecular states and spatial or
  To address these challenges, we introduce spatial omics scope (soScope), a generative framework that enhances spatial resolution and data quality by modeling spot-level profiles from diverse spatial omics technologies. SoScope views each spot as an aggregation of "subspots" at an enhanced spatial resolution, integrating omics profiles, spatial relations, and high-resolution morphological images through a multimodal deep learning framework, enabling accurate modeling and reduction of variations in diverse spatial omics types.
 
 <img src="overview.png" alt="image-20230928102849342"  />
-**Fig. 1 | An overview of the study.** (**a**) The soScope framework. soScope integrates molecular profiles ($\bold X$), spatial neighboring relations ($\bold A$), and morphological image features ($\bold Y$) from the same tissue using a unified generative model to enhance spatial resolution and refine data quality for diverse spatial omics profiles. (**b**) The probabilistic graphical model representation of soScope. Each of the   spots in the spatial data is considered an aggregation of   subspots at a higher spatial resolution. The subspot omics profile ($\bold{\hat X}$) depends on both the latent states ($\bold Z$) at the spot level and image features ($\bold Y$) at the subspot level. The observed profile is obtained by summing profiles from its subspots.
+**Fig. 1 | An overview of the study.**
+(**a**) The soScope framework. soScope integrates molecular profiles ($X$), spatial neighboring relations ($A$), and morphological image features ($Y$) from the same tissue using a unified generative model to enhance spatial resolution and refine data quality for diverse spatial omics profiles. (**b**) The probabilistic graphical model representation of soScope. Each of the   spots in the spatial data is considered an aggregation of   subspots at a higher spatial resolution. The subspot omics profile (${\hat X}$) depends on both the latent states ($Z$) at the spot level and image features ($Y$) at the subspot level. The observed profile is obtained by summing profiles from its subspots.
 
 ![image-20230928103553984](model.png)
 
 **Fig. 2 | The model architecture of soScope**
 
-The model includes three parts: Firstly, at the spot resolution, omics profile ($\bold X$), and their spatial neighboring relations ($\bold A$) are encoded by a 3-layer graph transformer and mapped to parameters ($\bold{\mu} ^{(n)}$ and $\bold{\sigma} ^{(n)}$ for spot $s^{(n)}$) defining the latent distribution for $\bold Z$ . Spatial states $\bold Z$ are sampled via the reparameterization trick. Secondly, at the subspot resolution, image patches from subspot regions are converted into deep features $\bold Y$ (**Methods**) and concatenated with the spot representation $\bold Z$ . Thirdly, the combined input is mapped to distribution parameters $\bold{\omega}_k ^{(n)}$ for subspots’ profiles $\bold{\hat X}$ through two sequential ResNet blocks. Here, $\bold{\omega}_k ^{(n)}$ represents likelihood parameters for the  $k$-th subspot enhanced from the $n$-th spot, which is determined by the omics type . An additional image regularization term is used to encourage the consistency between enhanced profile similarity ($\bold{\Lambda}$) and morphological similarity ($\bold W$) at the subspot level (blue line).
+The model includes three parts: Firstly, at the spot resolution, omics profile ($X$), and their spatial neighboring relations ($A$) are encoded by a 3-layer graph transformer and mapped to parameters (${\mu} ^{(n)}$ and ${\sigma} ^{(n)}$ for spot $s^{(n)}$) defining the latent distribution for $Z$ . Spatial states $Z$ are sampled via the reparameterization trick. Secondly, at the subspot resolution, image patches from subspot regions are converted into deep features $Y$ and concatenated with the spot representation $Z$ . Thirdly, the combined input is mapped to distribution parameters ${\omega}_k ^{(n)}$ for subspots’ profiles ${\hat X}$ through two sequential ResNet blocks. Here, ${\omega}_k ^{(n)}$ represents likelihood parameters for the  $k$-th subspot enhanced from the $n$-th spot, which is determined by the omics type . An additional image regularization term is used to encourage the consistency between enhanced profile similarity (${\Lambda}$) and morphological similarity ($W$) at the subspot level (blue line).
 
 ## soScope software package
 
@@ -40,11 +41,11 @@ git clone https://github.com/deng-ai-lab/soScope
 
 ### Image feature inception
 
-By running `image_inception.py` on image patches,  users can get 2048-dimensional image feature  ($\bold Y$) .
+By running `image_inception.py` on image patches,  users can get 2048-dimensional image feature  ($Y$) .
 
 ### Graph building
 
-By running `BuildGraph.py` on spatial profiles and image feature,  users can get spatial neighboring relations ($\bold A$) and morphological similarity ($\bold W$) in coordinate format.
+By running `BuildGraph.py` on spatial profiles and image feature,  users can get spatial neighboring relations ($A$) and morphological similarity ($W$) in coordinate format.
 
 ### Import soScope python package
 
@@ -74,6 +75,7 @@ two_step_train(
         num_neighbors,
 ):
 ```
+
 where 
 
 ```
@@ -123,6 +125,7 @@ We provide Jupyter Notebooks (see `soScope_demo`) for the demonstration of apply
 4. Visualization of results.
 
 ## Copyright
+
 Software provided as is under **MIT License**.
 
 Bohan Li @ 2023 BUAA and Deng ai Lab
@@ -132,4 +135,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
