@@ -140,7 +140,7 @@ We provide Jupyter Notebooks (see `soScope_demo`) for the demonstration of apply
 3. Train and inference codes;
 4. Visualization of results.
 
-We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScopelearning settings.
+We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScope settings.
 
 #### 1. Data
 
