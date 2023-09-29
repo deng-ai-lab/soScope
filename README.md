@@ -92,7 +92,7 @@ Args:
     checkpoint_every: save the model in each check point.
     backup_every: update the model in each backup point.
     epochs: training epoches.
-    num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for 			Visium and num_neighbors=4 for other platforms.
+    num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for Visium and num_neighbors=4 for other platforms.
 
 Returns:
 	Optimized soScope model.
@@ -121,7 +121,7 @@ where
 Args:
     experiment_dir:  saving directory for inference stage.
     non_negative: True to make the enhanced profiles not negative.
-    num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for 			Visium and num_neighbors=4 for other platforms.
+    num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for Visium and num_neighbors=4 for other platforms.
     data_dir: dataset directory contains necessary data mentioned above.
     result_dir: saving directory for results.
     device: 'cuda' or 'cpu'
@@ -176,7 +176,9 @@ params:
   # Learing rate
   lr: 0.00_1
   
-  # Beta is the weight of KL divergence. We offer a warm-up startegy to  optimize log p(x|z) first with a low initial beta at  	 # the first 5000 iterations, and optimize log p(x|z)-beta*KL with a beta=1 after the network is trained 15000 iterations.    	# In practice, we use and suggest a initial beta=1 to optimize the graph varaitional directly.
+  # Beta is the weight of KL divergence. We offer a warm-up startegy to  optimize log p(x|z) first with a low initial beta at
+  # the first 5000 iterations, and optimize log p(x|z)-beta*KL with a beta=1 after the network is trained 15000 iterations.
+  # In practice, we use and suggest a initial beta=1 to optimize the graph varaitional directly.
   beta_start_value: 1
   beta_end_value: 1
   beta_n_iterations: 10000
