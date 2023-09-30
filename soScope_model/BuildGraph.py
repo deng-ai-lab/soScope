@@ -1,22 +1,31 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import csv
 
 
 def L2_distance(x,y):
     return np.linalg.norm(x-y)
 
 
-def get_distance_mu_std_var(name, filter_file, feature_file, mode, dim, distance, start_index=0):
+def get_distance_min_median(feature_file, filter_file, mode, dim, distance=L2_distance, start_index=0):
+    """
+
+    Args:
+        feature_file: the path of image feature (for W) or sptail profile matrix (for A)
+        filter_file: the position file in .csv to store the x-y position of each entry
+        mode: the number of neighbors, users can only choose 4 or 6
+        dim: the dimention of features used for calculate the distance
+        distance: the distance metrics, default = L2_distance
+        start_index: in case of a profile mixture, users can slice the input feature by adjusting start_index to select exact features.
+
+    Returns:
+        the minimum and median values of neighboring distance
+    """
     gene = np.load(feature_file)[:, start_index:start_index+dim]
     print(gene.shape)
     merge_position = pd.read_csv(filter_file)
     position = [[merge_position['row'].tolist()[i], merge_position['col'].tolist()[i]] for i in range(len(merge_position['row'].tolist()))]
     print(len(position))
-
-    # mode = 4  # 选择4邻域，即认为4邻域内的点为邻居
-    # mode = 6  # 选择6邻域，即认为6邻域内的点为邻居 （Visium Only）
 
     offsets = []
     if mode == 4:
@@ -40,21 +49,31 @@ def get_distance_mu_std_var(name, filter_file, feature_file, mode, dim, distance
                 dist = distance(gene[i], gene[idx_target])
                 index.append(dist)
 
-    plt.hist(index, bins=50, color="blue", label=distance.__name__, density=True, histtype="bar", edgecolor='white')
-    plt.title(name + " Distance Distribution", fontdict={'fontsize': 18, 'color': 'r'})
-    plt.xlabel(distance.__name__)
-    plt.ylabel("Frequency")  # 显示图例plt.legend(loc = 'best')
-    # 显示图形
-    plt.show()
-
     min_ = np.min(index)
     median_ = np.median(index)
     return min_, median_
 
 
-def get_weight_adj(filter_file, feature_file, mode,
+def get_weight_adj(feature_file, filter_file, mode,
                    dim, min_, median_, 
-                   dist_mode, distance, scale=2, start_index=0):
+                   distance, scale=, start_index=0):
+    """
+
+    Args:
+        feature_file: the path of image feature (for W) or sptail profile matrix (for A)
+        filter_file: the position file in .csv to store the x-y position of each entry
+        mode: the number of neighbors, users can only choose 4 or 6
+        dim: the dimention of features used for calculate the distance
+        min_: the minimum distance
+        median_: the median distance
+        distance: the distance metrics, default = L2_distance
+        scale: a number >1. The median distance will have a similarity of -log(scale)
+        start_index: in case of a profile mixture, users can slice the input feature by adjusting start_index to select exact features.
+
+    Returns:
+        A similarity matrix in the coo format.
+
+    """
     gene = np.load(feature_file)[:, start_index:start_index+dim]
     merge_position = pd.read_csv(filter_file)
     position = [[merge_position['row'].tolist()[i], merge_position['col'].tolist()[i]] for i in range(len(merge_position['row'].tolist()))]
@@ -79,10 +98,7 @@ def get_weight_adj(filter_file, feature_file, mode,
             if [neighbor_x, neighbor_y] in position:
                 idx_target = position.index([neighbor_x, neighbor_y])
                 dist = distance(gene[i], gene[idx_target])
-                if dist_mode == 'L2':
-                    dist_ = dist
-                elif dist_mode == 'exp':
-                    dist_ = np.exp((-dist+lambda_)/delta_)
+                dist_ = np.exp((-dist+lambda_)/delta_)
                 index.append([i, idx_target, dist_])
     index = np.array(index)
     return index
