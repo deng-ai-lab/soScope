@@ -4,11 +4,11 @@
 
 `BuildGraph.py` : Codes for graph building.
 
-`train.py` : codes for training soScope.
+`train.py` : Codes for training soScope.
 
-`inference.py`: codes for inference using optimized soScope.
+`inference.py`: Codes for inference using optimized soScope.
 
- `training`: We provide a variational graph autoencoder `training/vgae.py` for pretraining, and soScope models `training/soScope_model_for_Gaussian.py` , `training/soScope_model_for_NB.py` , `training/soScope_model_for_Poission.py` , and `training/soScope_model_for_Multiomics.py` for fine tune and inference. 
+ `training`: Within this folder, there are network structures. There is a variational graph autoencoder `vgae.py` for pretraining and 4 soScope models `soScope_model_for_Gaussian.py` , `soScope_model_for_NB.py` , `soScope_model_for_Poission.py` , and `soScope_model_for_Multiomics.py` for fine tune and inference. 
 
  `utils`:  basic network blocks and functions used.
 
