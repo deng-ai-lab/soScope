@@ -10,7 +10,7 @@
 
  `training`: Within this folder, there are network structures. There is a variational graph autoencoder `vgae.py` for pretraining and 4 soScope models `soScope_model_for_Gaussian.py` , `soScope_model_for_NB.py` , `soScope_model_for_Poission.py` , and `soScope_model_for_Multiomics.py` for fine tune and inference. 
 
- `utils`:  basic network blocks and functions used.
+ `utils`:  Basic network blocks and functions used.
 
 ## Usage
 
