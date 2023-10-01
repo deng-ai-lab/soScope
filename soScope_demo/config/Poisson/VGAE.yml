@@ -1,0 +1,14 @@
+trainer: VGAETrainer_Poisson
+params:
+  # Number of latent dimensions
+  gene_dim: 60
+  sub_dim: 2048
+  z_dim: 128
+  sub_node: 4
+  optimizer_name: 'Adam'
+  lr: 0.00_1
+  beta_start_value: 0.001
+  beta_end_value: 1
+  beta_n_iterations: 10000
+  head_num: 1
+  beta_start_iteration: 5000

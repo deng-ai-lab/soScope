@@ -1,0 +1,16 @@
+trainer: soScope_NB
+params:
+  # Number of latent dimensions
+  gene_dim: 9
+  sub_node: 7
+  sub_dim: 2048
+  z_dim: 128
+  optimizer_name: 'Adam'
+  scale: 1
+  lr: 0.00_05
+  gamma_start_value: 1
+  gamma_end_value: 0.01
+  beta_start_value: 1
+  beta_end_value: 1
+  beta_n_iterations: 10000
+  beta_start_iteration: 5000

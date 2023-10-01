@@ -1,0 +1,17 @@
+params:
+  beta_end_value: 1
+  graph_loss_weight: 1
+  beta_n_iterations: 20000
+  beta_start_iteration: 10000
+  gamma_start_value: 1
+  gamma_end_value: 0.00_1
+  beta_start_value: 1
+  gene_dim: 60
+  lr: 0.00_01
+  optimizer_name: 'Adam'
+  scale: 5
+  sub_dim: 2048
+  z_dim: 128
+  head_num: 1
+  sub_node: 4
+trainer: soScope_Poisson

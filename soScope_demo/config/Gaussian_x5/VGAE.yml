@@ -1,0 +1,12 @@
+params:
+  beta_end_value: 1
+  beta_n_iterations: 10000
+  beta_start_iteration: 5000
+  beta_start_value: 1
+  gene_dim: 2
+  head_num: 1
+  lr: 0.0001
+  optimizer_name: SGD
+  sub_dim: 2048
+  z_dim: 128
+trainer: VGAETrainer
