@@ -138,7 +138,7 @@ We provide 4 Jupyter Notebook  demonstrations under `soScope_demo`. The demonstr
 3.  `soScope_demo/soScope_demo_Gaussian.ipynb`: Gaussian distribution for slide-DNA-seq PCs;
 4.  `soScope_demo/soScope_demo_Multiomics.ipynb`: Poisson and negative binomial distribution for spatial-CITE.
 
-Our demonstrations are run by Python = 3.6 with packages PyTroch= 1.8.0, PyG >= 1.7.2, and Numpy = 1.16.2.  We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScope settings.
+Our demonstrations are run by Python = 3.6 with packages PyTroch= 1.8.0, PyG = 1.7.2, and Numpy = 1.16.2.  We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScope settings.
 
 #### 1. Data
 
