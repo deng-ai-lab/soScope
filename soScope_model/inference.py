@@ -11,23 +11,18 @@ def infer(
         num_neighbors,
         data_dir,
         result_dir,
-        device='cuda',
-        saved_model=None
-):
+        device='cuda'):
     """
 
     Args:
-        experiment_dir:  saving directory for inference stage.
+        experiment_dir: loading optimized model from this directory for inference stage.
         non_negative: True to make the enhanced profiles not negative.
-        num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised.
+        num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for Visium and num_neighbors=4 for other platforms.
         data_dir: dataset directory contains necessary data mentioned above.
         result_dir: saving directory for results.
         device: 'cuda' or 'cpu'
-        saved_model: optimized soScope model for resolution enhancement.
 
-    Returns:
-        Enhanced spatial profiles saved as {result_dir}/infer_subspot.npy
-
+    Enhanced spatial profiles saved as {result_dir}/infer_subspot.npy
     """
     config_file = None
     # Check if the experiment directory already contains a model
@@ -56,7 +51,6 @@ def infer(
     TrainerClass = getattr(training_module, config['trainer'])
     print(TrainerClass)
     trainer = TrainerClass(writer=None, **config['params'])
-
     trainer.to(device)
 
     if not os.path.exists(result_dir):
@@ -66,11 +60,6 @@ def infer(
     if load_model_file:
         trainer.load(load_model_file)
         print('Pretrained Model Loaded!')
-
-    if saved_model is not None:
-        trainer = saved_model
-        print('use passed trainer!')
-
     trainer.to(device)
 
     if not os.path.exists(result_dir):
@@ -95,3 +84,12 @@ def infer(
 
     sub_x_pred = trainer.infer(st_data, sub_data, nonnegative=non_negative).cpu().numpy()
     np.save(result_dir + f'/infer_subspot.npy', sub_x_pred)
+
+if __name__=='__main__':
+    infer(
+        experiment_dir= '/home/lbh/projects_dir/soScope/soScope_demo/experiments/soScope_Gaussian',
+        non_negative=True,
+        num_neighbors=6,
+        data_dir= '/home/lbh/projects_dir/soScope/soScope_demo/DataSet/Gaussian_demo/',
+        result_dir='/home/lbh/projects_dir/soScope/soScope_demo/DataSet/Gaussian_demo/',
+        device='cuda')

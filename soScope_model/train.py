@@ -14,27 +14,12 @@ def train(trainer, experiment_dir, train_set, st_data, writer, epochs, checkpoin
             trainer.train_step(st_data=st_data, sub_data=data)
 
         if epoch % checkpoint_every == 0:
-            # test_err = trainer.estimate(st_data, train_set)
-            # tqdm.write('\n')
-            # tqdm.write('********** eval **********')
-            # tqdm.write('Reconstruction Error: %f' % test_err)
-            #
-            # if not (writer is None):
-            #     writer.add_scalar(tag='evaluation/test_accuracy', scalar_value=test_err,
-            #                       global_step=trainer.iterations)
-            # tqdm.write('Storing model checkpoint')
             while os.path.isfile(os.path.join(experiment_dir, 'checkpoint_%d.pt' % checkpoint_count)):
                 checkpoint_count += 1
-            # tqdm.write('iteration: %f' % trainer.iterations)
             trainer.save(os.path.join(experiment_dir, 'checkpoint_%d.pt' % checkpoint_count))
             checkpoint_count += 1
 
         if epoch % backup_every == 0:
-            # tqdm.write('--------- back up ----------')
-            # tqdm.write('kl_loss: %f' % trainer.loss_items['loss/kl_loss'][-1])
-            # tqdm.write('node_loss: %f' % trainer.loss_items['loss/node_loss'][-1])
-            # tqdm.write('graph_loss: %f' % trainer.loss_items['loss/graph_loss'][-1])
-            # tqdm.write('Updating the model backup')
             trainer.save(os.path.join(experiment_dir, 'model.pt'))
 
 def two_step_train(
@@ -51,23 +36,20 @@ def two_step_train(
         num_neighbors,
 ):
     """
+Args:
+    logging: not None to log the summary in the training process.
+    vgae_experiment_dir: saving directory for pre-training stage.
+    soScope_experiment_dir: saving directory soScope training.
+    data_dir: dataset directory contains necessary data mentioned above.
+    vgae_config_file: model configuration for variational graph auto-encoder used in pre-training stage.
+    soScope_config_file: model configuration for soScope.
+    device: 'cuda' or 'cpu'
+    checkpoint_every: save the model in each check point.
+    backup_every: update the model in each backup point.
+    epochs: training epoches.
+    num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for Visium and num_neighbors=4 for other platforms.
 
-    Args:
-        logging: not None to log the summary in the training process.
-        vgae_experiment_dir: saving directory for pre-training stage.
-        soScope_experiment_dir: saving directory soScope training.
-        data_dir: dataset directory contains necessary data mentioned above.
-        vgae_config_file: model configuration for variational graph auto-encoder used in pre-training stage.
-        soScope_config_file: model configuration for soScope.
-        device: 'cuda' or 'cpu'
-        checkpoint_every: save the model in each check point.
-        backup_every: update the model in each backup point.
-        epochs: training epoches.
-        num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised.
-
-    Returns:
-        Optimized soScope model.
-
+	Optimized soScope model is saved in soScope_experiment_dir
     """
     if logging:
         from torch.utils.tensorboard import SummaryWriter
@@ -128,11 +110,22 @@ def two_step_train(
 
     load_model_file = os.path.join(vgae_experiment_dir, 'model.pt')
     # Resume the training if specified
-#     if load_model_file:
-#         soScope_trainer.load(load_model_file)
-#         print('Pretrained Model Loaded!')
-    soScope_trainer.encoder_st = vgae_trainer.encoder_st
+    if load_model_file:
+        soScope_trainer.load(load_model_file)
+        print('Pretrained Model Loaded!')
+
     print('========== Optimization of soScope ============')
     train(soScope_trainer, soScope_experiment_dir, train_set, st_data, soScope_writer, epochs[1], checkpoint_every, backup_every)
 
-    return soScope_trainer
+if __name__=='__main__':
+    two_step_train(logging=not None,
+                   vgae_experiment_dir='/home/lbh/projects_dir/soScope/soScope_demo/experiments/VGAE_Gaussian',
+                   soScope_experiment_dir='/home/lbh/projects_dir/soScope/soScope_demo/experiments/soScope_Gaussian',
+                   data_dir='/home/lbh/projects_dir/soScope/soScope_demo/DataSet/Gaussian_demo/',
+                   vgae_config_file='/home/lbh/projects_dir/soScope/soScope_demo/config/Gaussian/VGAE.yml',
+                   soScope_config_file='/home/lbh/projects_dir/soScope/soScope_demo/config/Gaussian/soScope.yml',
+                   device='cuda',
+                   checkpoint_every=1000,
+                   backup_every=200,
+                   epochs=[400, 400],
+                   num_neighbors=4)
