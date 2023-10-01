@@ -14,7 +14,15 @@ By running `BuildGraph.py` on spatial profiles and image feature,  users can get
 
 ### 3. Training and inference
 
+`train.py` and `inference.py` are used to optimize and use model in folder `training`.
+
+We provide a variational graph autoencoder `training/vgae.py` for pretraining, and soScope models `training/soScope_model_for_Gaussian.py` , `training/soScope_model_for_NB.py` , `training/soScope_model_for_Poission.py` , and `training/soScope_model_for_Multiomics.py` for fine tune and inference. 
+
+The basic network blocks and data reading functions are implemented in folder `utils`.
+
 #### 1) Import soScope python package
+
+
 
 ```python
 from soScope_model.train import two_step_train  # for model training
