@@ -33,9 +33,9 @@ soScope requires the following packages for installation:
 - Scipy = 1.10.1
 - scikit-learn = 1.2.0
 
-All required python packages can be installed through `pip/conda` command. 
+All required Python packages can be installed through `pip/conda` command. 
 
-To install soScope package, use
+To install the soScope package, use
 
 ```terminal
 git clone https://github.com/deng-ai-lab/soScope
@@ -62,21 +62,21 @@ from soScope_model.inference import infer  # for enhanced profiles inference
 
 ### Train soScope on multimodal data
 
-soScope requires spatial profiles ($N\times G$),  spatial neighboring relations ($3\times N_{edges}$ , a sparse matrix in coordinate format) ,  image features ($NK\times 2048$), and image similarity matrix ($3\times N_{edges}$ , a sparse matrix in coordinate format) for model training. All of these data should be provided in  `data_dir`. After optimization, the soScope model is saved in `saved_model`.
+soScope requires spatial profiles ($N\times G$),  spatial neighboring relations ($3\times N_{edges}$ , a sparse matrix in coordinate format) ,  image features ($NK\times 2048$), and image similarity matrix ($3\times N_{edges}$ , a sparse matrix in coordinate format) for model training. All of these data should be provided in  `data_dir`. After optimization, the soScope model is saved in `soScope_experiment_dir`.
 
 ```python
-saved_model = two_step_train(logging,
-                             vgae_experiment_dir,
-                             soScope_experiment_dir,
-                             data_dir,
-                             vgae_config_file,
-                             soScope_config_file,
-                             device,
-                             checkpoint_every,
-                             backup_every,
-                             epochs,
-                             num_neighbors=4
-                            )
+two_step_train(logging,
+               vgae_experiment_dir,
+               soScope_experiment_dir,
+               data_dir,
+               vgae_config_file,
+               soScope_config_file,
+               device,
+               checkpoint_every,
+               backup_every,
+               epochs,
+               num_neighbors=4
+              )
 ```
 where 
 
@@ -101,7 +101,7 @@ Returns:
 
 ### Inference enhanced spatial omics profiles
 
-After optimization, users can directly get enhanced spatial profiles.
+After optimization, users can directly get enhanced spatial profiles. 
 
 ```python
 infer(
@@ -111,7 +111,6 @@ infer(
         data_dir,
         result_dir,
         device,
-        saved_model
 )
 ```
 
@@ -119,13 +118,12 @@ where
 
 ```
 Args:
-    experiment_dir:  saving directory for inference stage.
+    experiment_dir: loading optimized model from this directory for inference stage.
     non_negative: True to make the enhanced profiles not negative.
     num_neighbors: edges are built between every neighboring {num_neighbors} nodes, not to be revised. num_neighbors=6 for Visium and num_neighbors=4 for other platforms.
     data_dir: dataset directory contains necessary data mentioned above.
     result_dir: saving directory for results.
     device: 'cuda' or 'cpu'
-    saved_model: optimized soScope model for resolution enhancement.
 
 Returns:
 	Enhanced spatial profiles saved as {result_dir}/infer_subspot.npy
@@ -133,18 +131,18 @@ Returns:
 
 ## Demonstration
 
-We provide Jupyter Notebooks (see `soScope_demo`) for the demonstration of applying soScope on the negative binomial distribution, Poisson distribution, Gaussian distribution, and joint distribution for spatial multiomics. The demonstration includes:
+We provide 4 Jupyter Notebook  demonstrations under `soScope_demo`. The demonstrations include 4 spatial omics:
 
-1. Data in the aforementioned distribution;
-2. Config files for neural networks;
-3. Train and inference codes;
-4. Visualization of results.
+1.  `soScope_demo/soScope_demo_NB.ipynb`: Negative binomial distribution for spatial transcriptomics;
+2.  `soScope_demo/soScope_demo_Poisson.ipynb`: Poisson distribution for spatial-CUT&Tag;
+3.  `soScope_demo/soScope_demo_Gaussian.ipynb`: Gaussian distribution for slide-DNA-seq PCs;
+4.  `soScope_demo/soScope_demo_Multiomics.ipynb`: Poisson and negative binomial distribution for spatial-CITE.
 
-We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScope settings.
+Our demonstrations are run by Python = 3.6 with packages PyTroch= 1.8.0, PyG >= 1.7.2, and Numpy = 1.16.2.  We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example to explain the soScope settings.
 
 #### 1. Data
 
-369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed: MT1G, FABP1, EPCAM in Epithelium region; CNN1, MYH11, TAGLN in Muscularis region; PTPRC, HLA-DRA, CD74 in Immune region.
+369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed: MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
 
 #### 2. Config files for neural networks
 
@@ -224,13 +222,12 @@ params:
   beta_start_iteration: 5000
 ```
 
-#### 3. Train and inference codes
+## Result reproduction
 
-#### 4. Visualization of results
-
-See the implementation in  `soScope_demo/soScope_demo_NB.ipynb`.
+We provide Jupyter Notebooks (see `result reproduce`) for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
 
 ## Copyright
+
 Software provided as is under **MIT License**.
 
 Bohan Li @ 2023 BUAA and Deng ai Lab
