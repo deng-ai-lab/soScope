@@ -1,6 +1,6 @@
 # Result reproduce
 
-We provide Jupyter Notebooks (see `result reproduce`) for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
+We provide Jupyter Notebooks for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
 
 `Fig2_Human_intestine.ipynb`: Results present in Figure2 and Supplementary Figure 2,3
 
