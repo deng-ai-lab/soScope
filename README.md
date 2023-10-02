@@ -131,7 +131,7 @@ Returns:
 
 ## Demonstration
 
-We provide 4 Jupyter Notebook  demonstrations under `soScope_demo`. The demonstrations include 4 spatial omics:
+We provide four Jupyter Notebook demonstrations under soScope_demo. These demonstrations cover four spatial omics scenarios:
 
 1.  `soScope_demo/soScope_demo_NB.ipynb`: Negative binomial distribution for spatial transcriptomics;
 2.  `soScope_demo/soScope_demo_Poisson.ipynb`: Poisson distribution for spatial-CUT&Tag;
@@ -142,7 +142,7 @@ Our demonstrations are run by Python = 3.6 with packages PyTroch= 1.8.0, PyG = 1
 
 #### 1. Data
 
-369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed: MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
+The demo uses 369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed include MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
 
 #### 2. Config files for neural networks
 
