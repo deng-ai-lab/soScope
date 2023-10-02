@@ -222,7 +222,7 @@ params:
   beta_start_iteration: 5000
 ```
 
-## Result reproduction
+## Result reproduce
 
 We provide Jupyter Notebooks (see `result reproduce`) for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
 
