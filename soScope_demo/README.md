@@ -1,6 +1,6 @@
-# Demonstration
+# Demonstration of Running soScope
 
-We provide 4 Jupyter Notebook  demonstrations under `soScope_demo`. The demonstrations include 4 spatial omics:
+Four Jupyter Notebooks are provided here for demonstrations, including 4 spatial omics types:
 
 1.  `soScope_demo/soScope_demo_NB.ipynb`: Negative binomial distribution for spatial transcriptomics;
 2.  `soScope_demo/soScope_demo_Poisson.ipynb`: Poisson distribution for spatial-CUT&Tag;
