@@ -116,7 +116,7 @@ class soScope_Poisson(soScope_Gaussian):
         sub_x_float = x_input
 
         mse_loss = nn.MSELoss(reduction='mean')
-        node_loss_2 = mse_loss((block_sum(epsilon, self.sub_node)).view(sub_x_truth.shape[0], -1),
+        node_loss_2 = (1/self.scale) * mse_loss((block_sum(epsilon, self.sub_node)).view(sub_x_truth.shape[0], -1),
                                sub_x_float.view(sub_x_truth.shape[0], -1))
         node_loss = node_loss_2.mean()
 
