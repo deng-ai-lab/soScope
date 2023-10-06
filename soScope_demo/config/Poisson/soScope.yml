@@ -9,7 +9,7 @@ params:
   gene_dim: 60
   lr: 0.00_01
   optimizer_name: 'Adam'
-  scale: 5
+  scale: 1
   sub_dim: 2048
   z_dim: 128
   head_num: 1
