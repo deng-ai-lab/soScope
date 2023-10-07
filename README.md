@@ -1,6 +1,6 @@
 # A unified deep generative model for resolution enhancement across spatial omics platforms 
 
-Spatial omics scope (soScope) is a unified generative framework designed for enhancing data quality and spatial resolution across various omics types obtained from diverse spatial technologies.
+Spatial omics scope (soScope) is a unified generative framework designed to enhance data quality and spatial resolution across various omics types obtained from diverse spatial technologies.
 
 ## Overview
 
@@ -20,7 +20,17 @@ Spatial Omics technologies are transforming the way to study tissue structures a
 > **Fig. 2 | The model architecture of soScope.**
 >
 >
->   The model includes three parts: Firstly, at the spot resolution, omics profile ($X$), and their spatial neighboring relations ($A$) are encoded by a 3-layer graph transformer and mapped to parameters (${\mu} ^{(n)}$ and ${\sigma} ^{(n)}$ for spot $s^{(n)}$) defining the latent distribution for $Z$ . Spatial states $Z$ are sampled via the reparameterization trick. Secondly, at the subspot resolution, image patches from subspot regions are converted into deep features $Y$ and concatenated with the spot representation $Z$. Thirdly, the combined input is mapped to distribution parameters ${\omega}_k ^{(n)}$ for subspots’ profiles ${\hat X}$ through two sequential ResNet blocks. Here, ${\omega}_k ^{(n)}$ represents likelihood parameters for the  $k$-th subspot enhanced from the $n$-th spot, which is determined by the omics type . An additional image regularization term is used to encourage the consistency between enhanced profile similarity (${\Lambda}$) and morphological similarity ($W$) at the subspot level (blue line).
+>   The model includes three parts: Firstly, at the spot resolution, omics profile ($X$) and their spatial neighboring relations ($A$) are encoded by a 3-layer graph transformer and mapped to parameters (${\mu} ^{(n)}$ and ${\sigma} ^{(n)}$ for spot $s^{(n)}$) defining the latent distribution for $Z$. Spatial states $Z$ are sampled via the reparameterization trick. Secondly, at the subspot resolution, image patches from subspot regions are converted into deep features $Y$ and concatenated with the spot representation $Z$. Thirdly, the combined input is mapped to distribution parameters ${\omega}_k ^{(n)}$ for subspots’ profiles ${\hat X}$ through two sequential ResNet blocks. Here, ${\omega}_k ^{(n)}$ represents likelihood parameters for the  $k$-th subspot enhanced from the $n$-th spot, which is determined by the omics type. An additional image regularization term is used to encourage the consistency between enhanced profile similarity (${\Lambda}$) and morphological similarity ($W$) at the subspot level (blue line).
+
+## Project content
+
+There are 3 folders in our project:
+
+1.result reproduce: Jupyter Notebooks for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
+
+2.soScope_demo: Jupyter Notebooks for demonstrations on  4 spatial omics used in our article.
+
+3.soScope_model: Python codes for implementation of soScope.
 
 ## soScope software package
 
@@ -33,7 +43,7 @@ soScope requires the following packages for installation:
 - Scipy = 1.10.1
 - scikit-learn = 1.2.0
 
-All required Python packages can be installed through `pip/conda` command. 
+All Python packages required can be installed through `pip/conda` command. 
 
 To install the soScope package, use
 
@@ -45,11 +55,11 @@ git clone https://github.com/deng-ai-lab/soScope
 
 ### Image feature inception
 
-By running `image_inception.py` on image patches,  users can get 2048-dimensional image feature  ($Y$) .
+By running `image_inception.py` on image patches,  users can get 2048-dimensional image features  ($Y$) .
 
 ### Graph building
 
-By running `BuildGraph.py` on spatial profiles and image feature,  users can get spatial neighboring relations ($A$) and morphological similarity ($W$) in coordinate format.
+By running `BuildGraph.py` on spatial profiles and image features,  users can get spatial neighboring relations ($A$) and morphological similarity ($W$) in coordinate format.
 
 ### Import soScope python package
 
@@ -131,7 +141,7 @@ Returns:
 
 ## Demonstration
 
-We provide four Jupyter Notebook demonstrations under soScope_demo. These demonstrations cover four spatial omics scenarios:
+We provide 4 Jupyter Notebook  demonstrations under `soScope_demo`. The demonstrations include 4 spatial omics:
 
 1.  `soScope_demo/soScope_demo_NB.ipynb`: Negative binomial distribution for spatial transcriptomics;
 2.  `soScope_demo/soScope_demo_Poisson.ipynb`: Poisson distribution for spatial-CUT&Tag;
@@ -142,7 +152,7 @@ Our demonstrations are run by Python = 3.6 with packages PyTroch= 1.8.0, PyG = 1
 
 #### 1. Data
 
-The demo uses 369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed include MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
+369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed: MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
 
 #### 2. Config files for neural networks
 
@@ -224,7 +234,7 @@ params:
 
 ## Result reproduce
 
-We provide Jupyter Notebooks (see `result reproduce`) for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
+We provide Jupyter Notebooks (see `result reproduce`) for the result reproduction in our article.  Results present in each figure and corresponding supplementary figures are recorded.
 
 ## Copyright
 
