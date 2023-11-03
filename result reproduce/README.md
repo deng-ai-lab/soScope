@@ -10,5 +10,5 @@ We provide Jupyter Notebooks for the result reproduction in our article.  Result
 
 `Fig4_Mouse_liver_RNA.ipynb`: Results present in Supplementary Figure 7,8
 
-`Fig5_Human_skin.ipynb`: Results present in Figure5 and Supplementary Figure 9,10
+`Fig5_Human_skin.ipynb`: Results present in Figure5 and Supplementary Figure 9
 
