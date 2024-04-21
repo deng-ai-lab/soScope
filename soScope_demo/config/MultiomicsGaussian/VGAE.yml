@@ -1,0 +1,14 @@
+trainer: VGAETrainer_Joint_GNB
+params:
+  protein_dim: 25
+  gene_dim: 25
+  sub_dim: 2048
+  z_dim: 128
+  sub_node: 9
+  optimizer_name: 'Adam'
+  lr: 0.00_1
+  beta_start_value: 1
+  beta_end_value: 1
+  beta_n_iterations: 10000
+  head_num: 1
+  beta_start_iteration: 10000

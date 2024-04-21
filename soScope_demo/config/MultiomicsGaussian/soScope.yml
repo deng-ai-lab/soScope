@@ -1,0 +1,20 @@
+params:
+  beta_end_value: 1
+  beta_n_iterations: 20000
+  beta_start_iteration: 20000
+  beta_start_value: 1
+  gamma_end_value: 0.001
+  gamma_start_value: 1
+  gene_dim: 25
+  graph_loss_weight: 1
+  head_num: 1
+  lr: 0.000_1
+  optimizer_name: Adam
+  protein_dim: 25
+  scale_p: 0.05
+  scale_g: 1
+  scale: 1
+  sub_dim: 2048
+  sub_node: 9
+  z_dim: 128
+trainer: soScope_JointGaussian
