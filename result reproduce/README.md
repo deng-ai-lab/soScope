@@ -2,7 +2,11 @@
 
 We provide Jupyter Notebooks for the result reproduction in our article.  Results present in each figure and corresponding supplementary figure are recorded.
 
-`Fig2_Human_intestine+PDAC.ipynb`: Results present in Figure2 and Supplementary Figure 2,3
+`Fig2_Human_intestine.ipynb`: Results present in Figure2 and Supplementary Figure 2
+
+`Fig2_Mouse_head.ipynb`: Results present in Figure2 and Supplementary Figure 3
+
+`Fig2_Mouse_kidney.ipynb`: Results present in Figure2 and Supplementary Figure 3
 
 `Fig3_Mouse_embryo.ipynb`: Results present in Figure3 and Supplementary Figure 4,5
 
@@ -11,4 +15,6 @@ We provide Jupyter Notebooks for the result reproduction in our article.  Result
 `Fig4_Mouse_liver_RNA.ipynb`: Results present in Supplementary Figure 7,8
 
 `Fig5_Human_skin.ipynb`: Results present in Figure5 and Supplementary Figure 9
+
+`Supp_Fig10_Mouse_embryo.ipynb`: Results present in Supplementary Figure 10
 
