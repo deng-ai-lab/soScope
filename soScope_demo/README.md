@@ -6,6 +6,8 @@ Four Jupyter Notebooks are provided here for demonstrations, including 4 spatial
 2.  `soScope_demo/soScope_demo_Poisson.ipynb`: Poisson distribution for spatial-CUT&Tag;
 3.  `soScope_demo/soScope_demo_Gaussian.ipynb`: Gaussian distribution for slide-DNA-seq PCs;
 4.  `soScope_demo/soScope_demo_Multiomics.ipynb`: Poisson and negative binomial distribution for spatial-CITE.
+5.  `soScope_demo/soScope_demo_NB_single_cell_resolution.ipynb`: Negative binomial distribution for Xenium at single-cell resolution.
+6.  `soScope_demo/soScope_demo_spatial_ATAC_RNA_seq.ipynb`: Gaussian and negative binomial distribution for spatial ATAC-RNA-seq.
 
 All demonstrations are configured under the environment Python = 3.6, PyTroch= 1.8.0, PyG = 1.7.2, and Numpy = 1.16.2.  We take the Jupyter Notebooks `soScope_demo/soScope_demo_NB.ipynb` as an example and introduce the steps to run soScope.
 
@@ -13,7 +15,7 @@ All demonstrations are configured under the environment Python = 3.6, PyTroch= 1
 
 369 “low-resolution” spots with aggregated gene expressions (X), morphological image features generated from a pretrained Inception-v3 model at high resolution (Y), and spatial neighboring relations (A). Genes analyzed: MT1G, FABP1, EPCAM in the Epithelium region; CNN1, MYH11, TAGLN in the Muscularis region; PTPRC, HLA-DRA, CD74 in the Immune region.
 
-Demo dataset can be accessed by [link](https://www.dropbox.com/scl/fo/igdq4lf0kzlnt5z3ddugs/h?rlkey=kxdkb7q4pisgo2lsn0s5p1qyh&dl=0).
+Demo dataset can be accessed by [link](https://www.dropbox.com/scl/fo/igdq4lf0kzlnt5z3ddugs/h?rlkey=wjjdcv05d4b0dsreu0cxon415&st=daumer1d&dl=0).
 
 #### 2. Config files for neural networks
 
