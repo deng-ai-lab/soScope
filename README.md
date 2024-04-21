@@ -8,11 +8,11 @@ Spatial Omics technologies are transforming the way to study tissue structures a
 
  To address these challenges, we introduce spatial omics scope (soScope), a generative framework that enhances spatial resolution and data quality by modeling spot-level profiles from diverse spatial omics technologies. SoScope views each spot as an aggregation of "subspots" at an enhanced spatial resolution, integrating omics profiles, spatial relations, and high-resolution morphological images through a multimodal deep learning framework, enabling accurate modeling and reduction of variations in diverse spatial omics types.
 
-<img src="overview.png" alt="image-20230928102849342"  />
+![overview](README.assets/overview.png)
 
 > **Fig. 1 | An overview of the study.** (**a**) The soScope framework. soScope integrates molecular profiles ($X$), spatial neighboring relations ($A$), and morphological image features ($Y$) from the same tissue using a unified generative model to enhance spatial resolution and refine data quality for diverse spatial omics profiles. (**b**) The probabilistic graphical model representation of soScope. Each of the   spots in the spatial data is considered an aggregation of   subspots at a higher spatial resolution. The subspot omics profile (${\hat X}$) depends on both the latent states ($Z$) at the spot level and image features ($Y$) at the subspot level. The observed profile is obtained by summing profiles from its subspots.
 
-![image-20230928103553984](model.png)
+![model](README.assets/model.png)
 
 > **Fig. 2 | The model architecture of soScope.** The model includes three parts: Firstly, at the spot resolution, omics profile ($X$), and their spatial neighboring relations ($A$) are encoded by a 3-layer graph transformer and mapped to parameters (${\mu} ^{(n)}$ and ${\sigma} ^{(n)}$ for spot $s^{(n)}$) defining the latent distribution for $Z$ . Spatial states $Z$ are sampled via the reparameterization trick. Secondly, at the subspot resolution, image patches from subspot regions are converted into deep features $Y$ and concatenated with the spot representation $Z$. Thirdly, the combined input is mapped to distribution parameters ${\omega}_k ^{(n)}$ for subspots’ profiles ${\hat X}$ through two sequential ResNet blocks. Here, ${\omega}_k ^{(n)}$ represents likelihood parameters for the  $k$-th subspot enhanced from the $n$-th spot, which is determined by the omics type . An additional image regularization term is used to encourage the consistency between enhanced profile similarity (${\Lambda}$) and morphological similarity ($W$) at the subspot level (blue line).
 
