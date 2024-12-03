@@ -1,0 +1,5 @@
+This folder contains the pipeline for image data preprocess. Some of the output is not contained because of the limitation in upload size.  Users can use it following this guideline:
+1) run step_01 to generate the a)enhanced positions, b)corresponding image patches (we take x3 as an example);
+2) run step_02 for image feature extraction and input generation. The inception-v3 model can be downloaded through https://www.dropbox.com/scl/fo/igdq4lf0kzlnt5z3ddugs/h?rlkey=kxdkb7q4pisgo2lsn0s5p1qyh&dl=0. The name of image features is 'support_feature.npy'；
+3) run step_03 for input spatial omics generation named 'label.npy'. This code will simultaneously generate a numpy.array named 'sub_spot_bias.npy' containing the image features at central positions, which is not used in our model；
+4) run step_04 for graph generation. The graph for image feature is 'sub_adj.npy', and the graph for spatial omics is 'adj.npy'. 
